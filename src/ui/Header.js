@@ -26,7 +26,9 @@ const useStyles =makeStyles(theme=>({
 }))
 
 export default function Header(props){
+  const classes = useStyles()
   return(
+    <React.Fragment>
       <ElevationScroll>
       <AppBar position="fixed">
           <Toolbar>
@@ -36,7 +38,10 @@ export default function Header(props){
           </Toolbar>
       </AppBar>
       </ElevationScroll>
-  )
+      //vo button tag hide ho gye tha use show kar rha ,push kar rha jo content chup gya tha
+      <div className={classes.toolbarMargin}/>
+      </React.Fragment>
+)
 
 
 }
