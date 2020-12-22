@@ -25,7 +25,7 @@ function ElevationScroll(props) {
 const useStyles =makeStyles(theme=>({
   toolbarMargin:{
     ...theme.mixins.toolbar,
-   // marginBottom:"3em"  upper toolbar se kitne space chodna
+  // marginBottom:"3em"  upper toolbar se kitne space chodna
   },
   logo:{
     height:"5.4em"
@@ -57,7 +57,7 @@ export default function Header(props){
           </Toolbar>
       </AppBar>
       </ElevationScroll>
-      //vo button tag hide ho gye tha use show kar rha ,push kar rha jo content chup gya tha
+      {/*vo button tag hide ho gye tha use show kar rha ,push kar rha jo content chup gya tha*/}
       <div className={classes.toolbarMargin}/>
       </React.Fragment>
 )
