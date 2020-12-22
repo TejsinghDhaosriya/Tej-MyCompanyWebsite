@@ -34,10 +34,7 @@ const useStyles =makeStyles(theme=>({
     marginLeft:'auto'  //sabko right size bhej dega
   },
   tab:{
-    fontFamily:"Raleway",
-    textTransform:"none", //auto upper case band kar deta
-    fontWeight :700, //motoapa font ka
-    fontSize:"1rem",
+    ...theme.typography.tab,
     minWidth:10, //tab ke bitch distance kum kardeta 
      marginLeft:"25px"//distance in pixel bec. we want different in different devices
   }

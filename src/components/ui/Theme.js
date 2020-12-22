@@ -17,8 +17,11 @@ export default  createMuiTheme({
         }
     },
     typography:{
-        h3:{
-            fontWeight:200
+        tab:{
+    fontFamily:"Raleway",
+    textTransform:"none", //auto upper case band kar deta
+    fontWeight :700, //motoapa font ka
+    fontSize:"1rem",
         }
     }
 }); 
