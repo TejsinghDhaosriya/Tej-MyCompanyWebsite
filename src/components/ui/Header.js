@@ -3,6 +3,8 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import useScrollTrigger from '@material-ui/core/useScrollTrigger';
 import { makeStyles } from '@material-ui/core/styles';
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab';
 
 import logo from '../../assets/logo.svg';
  
@@ -27,6 +29,17 @@ const useStyles =makeStyles(theme=>({
   },
   logo:{
     height:"5.4em"
+  },
+  tabContainer:{
+    marginLeft:'auto'  //sabko right size bhej dega
+  },
+  tab:{
+    fontFamily:"Raleway",
+    textTransform:"none", //auto upper case band kar deta
+    fontWeight :700, //motoapa font ka
+    fontSize:"1rem",
+    minWidth:10, //tab ke bitch distance kum kardeta 
+     marginLeft:"25px"//distance in pixel bec. we want different in different devices
   }
 }))
 
@@ -37,6 +50,13 @@ export default function Header(props){
       <ElevationScroll>
       <AppBar position="fixed">
           <Toolbar disableGutters={true} className={classes.logo}><img alt = "company logo" src={logo}/>
+          <Tabs className={classes.tabContainer}>
+            <Tab className={classes.tab} label="Home" />
+            <Tab className={classes.tab}  label="Services" />
+            <Tab className={classes.tab}  label="The Revolution" />
+            <Tab className={classes.tab}  label="About Us" />
+            <Tab className={classes.tab}  label="Contact Us" />
+          </Tabs>
           </Toolbar>
       </AppBar>
       </ElevationScroll>
