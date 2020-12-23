@@ -7,6 +7,8 @@ import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import Button from "@material-ui/core/Button";
 import { Link } from "react-router-dom";
+import Menu from "@material-ui/core/Menu";
+import MenuItem from "@material-ui/core/MenuItem";
 
 import logo from "../../assets/logo.svg";
 
@@ -28,14 +30,14 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: "1.5em", //upper toolbar se kitne space chodna
   },
   logo: {
-    marginLeft :"7rem",
+    marginLeft: "7rem",
     height: "5.4rem",
   },
-  logoContainer:{
-    padding:0,
-    "&:hover":{
-      backgroundColor :"transparent"
-    }
+  logoContainer: {
+    padding: 0,
+    "&:hover": {
+      backgroundColor: "transparent",
+    },
   },
   tabContainer: {
     marginLeft: "auto", //sabko right size bhej dega
@@ -57,8 +59,19 @@ const useStyles = makeStyles((theme) => ({
 export default function Header(props) {
   const classes = useStyles();
   const [value, setValue] = useState(0);
+  const [anchorEl, setAnchorEl] = useState(null);
+  const [open, setOpen] = useState(false);
   const handleChange = (e, value) => {
     setValue(value);
+  };
+  const handleClick = (e) => {
+    setAnchorEl(e.currentTarget);
+    setOpen(true);
+  };
+
+  const handleClose = (e) => {
+    setAnchorEl(null);
+    setOpen(false);
   };
   useEffect(() => {
     if (window.location.pathname === "/" && value !== 0) {
@@ -72,14 +85,22 @@ export default function Header(props) {
       setValue(4);
     else if (window.location.pathname === "/estimate" && value !== 5)
       setValue(5);
-  },[value]);
+  }, [value]);
   return (
     <React.Fragment>
       <ElevationScroll>
         <AppBar position="fixed">
           <Toolbar disableGutters={true} className={classes.logo}>
-          <Button disableRipple component={Link} to="/" onClick={()=>setValue(0)}className={classes.logoContainer}>  {/*disableRipple logo mein click ke waqt color change nahi hone deta*/}
-            <img alt="company logo" src={logo} />
+            <Button
+              disableRipple
+              component={Link}
+              to="/"
+              onClick={() => setValue(0)}
+              className={classes.logoContainer}
+            >
+              {" "}
+              {/*disableRipple logo mein click ke waqt color change nahi hone deta*/}
+              <img alt="company logo" src={logo} />
             </Button>
             <Tabs
               value={value}
@@ -96,8 +117,11 @@ export default function Header(props) {
                 label="Home"
               />
               <Tab
+                aria-owns={anchorEl ? "simple-menu" : undefined}
+                aria-haspopup={anchorEl ? "true" : undefined}
                 className={classes.tab}
                 component={Link}
+                onMouseOver={(event) => handleClick(event)}
                 to="/services"
                 label="Services"
               />
@@ -112,7 +136,7 @@ export default function Header(props) {
                 component={Link}
                 to="/about"
                 label="About Us"
-              /> 
+              />
               <Tab
                 className={classes.tab}
                 component={Link}
@@ -126,6 +150,19 @@ export default function Header(props) {
               >
                 Free Estimate
               </Button>
+              <Menu
+                id="simple-menu"
+                anchorEl={anchorEl}
+                open={open}
+                onClose={handleClose}
+                MenuListProps={{onMouseLeave:handleClose}}
+              >
+                <MenuItem onClick={handleClose}>Custom Software</MenuItem>
+                <MenuItem onClick={handleClose}>
+                  Mobile App Developement
+                </MenuItem>
+                <MenuItem onClick={handleClose}>Website Developement</MenuItem>
+              </Menu>
             </Tabs>
           </Toolbar>
         </AppBar>
