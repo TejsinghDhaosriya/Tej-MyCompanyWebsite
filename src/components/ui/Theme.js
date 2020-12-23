@@ -22,6 +22,13 @@ export default  createMuiTheme({
     textTransform:"none", //auto upper case band kar deta
     fontWeight :700, //motoapa font ka
     fontSize:"1rem",
-        }
+        },
+    estimate:{
+
+    fontFamily:"Pacifico",
+    fontSize:"1rem",
+    textTransform:"none", //auto style band kare
+    color:"white"
+    }
     }
 }); 
