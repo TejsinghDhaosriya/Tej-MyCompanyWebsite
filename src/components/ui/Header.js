@@ -113,6 +113,61 @@ export default function Header(props) {
       setValue(4);
     else if (window.location.pathname === "/estimate" && value !== 5)
       setValue(5);
+
+    //this switch not required in new versions
+    switch (window.location.pathname) {
+      case "/":
+        if (value !== 0) {
+          setValue(0);
+        }
+        break;
+      case "/services":
+        if (value !== 1) {
+          setValue(1);
+          setSelectedIndex(0);
+        }
+        break;
+      case "/customsoftware":
+        if (value !== 1) {
+          setValue(1);
+          setSelectedIndex(1);
+        }
+        break;
+      case "/mobileapps":
+        if (value !== 1) {
+          setValue(1);
+          setSelectedIndex(2);
+        }
+        break;
+      case "/websites":
+        if (value !== 1) {
+          setValue(1);
+          setSelectedIndex(3);
+        }
+        break;
+      case "/revolution":
+        if (value !== 2) {
+          setValue(2);
+        }
+        break;
+      case "/about":
+        if (value !== 3) {
+          setValue(3);
+        }
+        break;
+      case "/contact":
+        if (value !== 4) {
+          setValue(4);
+        }
+        break;
+      case "/estimate":
+        if (value !== 5) {
+          setValue(5);
+        }
+        break;
+      default:
+        break;
+    }
   }, [value]);
   return (
     <React.Fragment>
@@ -188,21 +243,22 @@ export default function Header(props) {
                 elevation={0} //{/* services tab click karne pe thoda displace hona , rokne ke liye */}
               >
                 {menuOptions.map((option, i) => (
-                  <MenuItem key={option}
+                  <MenuItem
+                    key={option}
                     component={Link}
                     to={option.link}
                     classes={{ root: classes.menuItem }}
                     onClick={(event) => {
                       handleMenuItemClick(event, i);
                       setValue(1);
-                      handleClose()
+                      handleClose();
                     }}
-                    selected={i === selectedIndex &&value===1}
+                    selected={i === selectedIndex && value === 1}
                   >
                     {option.name}
                   </MenuItem>
-                ))} 
-                { /* 
+                ))}
+                {/* 
                 or via direct
 
 
