@@ -201,7 +201,62 @@ export default function Header(props) {
                   >
                     {option.name}
                   </MenuItem>
-                ))}
+                ))} 
+                { /* 
+                or via direct
+
+
+
+                  <MenuItem
+                  onClick={() => {
+                    handleClose();
+                    setValue(1);
+                  }}
+                  component={Link}
+                  to="/services"
+                  classes={{root:classes.menuItem}}
+                >
+                  Services
+                </MenuItem>
+
+                <MenuItem
+                  onClick={() => {
+                    handleClose();
+                    setValue(1);
+                  }}
+                  component={Link}
+                  to="/customsoftware"
+                  classes={{root:classes.menuItem}}
+                >
+                  Custom Software
+                </MenuItem>
+                <MenuItem
+                  onClick={() => {
+                    handleClose();
+                    setValue(1);
+                  }}
+                  component={Link}
+                  to="/mobileapps"
+                  classes={{root:classes.menuItem}}
+                >
+                  Mobile App Developement
+                </MenuItem>
+                <MenuItem
+                  onClick={() => {
+                    handleClose();
+                    setValue(1);
+                  }}
+                  component={Link}
+                  to="/websites"
+                  classes={{root:classes.menuItem}}
+                >
+                  Website Developement
+                </MenuItem>
+
+                
+                
+                
+                */}
               </Menu>
             </Tabs>
           </Toolbar>
