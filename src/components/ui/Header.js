@@ -9,6 +9,8 @@ import Button from "@material-ui/core/Button";
 import { Link } from "react-router-dom";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
+import useMediaQuery from '@material-ui/core/useMediaQuery';
+import {useTheme} from '@material-ui/core/styles';
 
 import logo from "../../assets/logo.svg";
 
@@ -28,10 +30,23 @@ const useStyles = makeStyles((theme) => ({
   toolbarMargin: {
     ...theme.mixins.toolbar,
     marginBottom: "1.5em", //upper toolbar se kitne space chodna
+    [theme.breakpoints.down("md")]:{
+      marginBottom: "0.7em",
+    },
+    [theme.breakpoints.down("xs")]:{
+      marginBottom: "0.2em",
+    },
   },
   logo: {
-    marginLeft: "7rem",
-    height: "5.4rem",
+    // marginLeft: "7rem",
+    height: "6em",
+    fontSize:"auto",
+    [theme.breakpoints.down("md")]:{
+      height:"4em"
+    },
+    [theme.breakpoints.down("xs")]:{
+      height:"3em"
+    }
   },
   logoContainer: {
     padding: 0,
@@ -45,7 +60,7 @@ const useStyles = makeStyles((theme) => ({
   tab: {
     ...theme.typography.tab,
     minWidth: 10, //tab ke bitch distance kum kardeta
-    marginLeft: "25px", //distance in pixel bec. we want different in different devices
+    marginLeft: "25px", //distance in pixel bec. we want different in different devices 
   },
   button: {
     ...theme.typography.estimate,
@@ -70,6 +85,8 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Header(props) {
   const classes = useStyles();
+  const theme =useTheme();
+  const matches = useMediaQuery(theme.breakpoints.down("md"));
   const [value, setValue] = useState(0);
   const [anchorEl, setAnchorEl] = useState(null);
   const [open, setOpen] = useState(false);
@@ -169,27 +186,13 @@ export default function Header(props) {
         break;
     }
   }, [value]);
-  return (
-    <React.Fragment>
-      <ElevationScroll>
-        <AppBar position="fixed">
-          <Toolbar disableGutters={true} className={classes.logo}>
-            <Button
-              disableRipple
-              component={Link}
-              to="/"
-              onClick={() => setValue(0)}
-              className={classes.logoContainer}
-            >
-              {" "}
-              {/*disableRipple logo mein click ke waqt color change nahi hone deta*/}
-              <img alt="company logo" src={logo} />
-            </Button>
-            <Tabs
+  const tabs=(
+  <React.Fragment>
+    <Tabs
               value={value}
               onChange={handleChange}
               className={classes.tabContainer}
-              indicateColor="primary"
+              indicatorColor="primary"
             >
               {" "}
               {/*indicateColor bottom tab color remove kar rha*/}
@@ -308,13 +311,36 @@ export default function Header(props) {
                 >
                   Website Developement
                 </MenuItem>
-
+             
                 
                 
                 
                 */}
               </Menu>
             </Tabs>
+  </React.Fragment>
+  )
+
+  return (
+    <React.Fragment>
+      <ElevationScroll>
+        <AppBar position="fixed">
+          <Toolbar disableGutters={true} className={classes.logo}>
+            <Button
+              disableRipple
+              component={Link}
+              to="/"
+              onClick={() => setValue(0)}
+              className={classes.logoContainer}
+            >
+              {" "}
+              {/*disableRipple logo mein click ke waqt color change nahi hone deta*/}
+              <img alt="company logo" className ={classes.logo} src={logo} />
+            </Button>
+            
+            {
+              matches?null:tabs
+            }
           </Toolbar>
         </AppBar>
       </ElevationScroll>
