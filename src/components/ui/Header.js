@@ -109,7 +109,12 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.common.orange,
   },
   drawerItemSeleted: {
-    opacity: 1,
+    "&.MuiListItemText-root":{
+      opacity:1
+    }
+  },
+  appbar: {
+    zIndex: theme.zIndex.modal + 1,
   },
 }));
 
@@ -278,7 +283,7 @@ export default function Header(props) {
       >
         {" "}
         {/*indicateColor bottom tab color remove kar rha*/}
-        {routes.map((route,index) => (
+        {routes.map((route, index) => (
           <Tab
             key={`${route}${index}`}
             className={classes.tab}
@@ -286,45 +291,42 @@ export default function Header(props) {
             to={route.link}
             label={route.name}
             aria-owns={route.ariaOwns}
-            aria-haspopup={route.ariaPopup} onMouseOver={route.mouseOver}
+            aria-haspopup={route.ariaPopup}
+            onMouseOver={route.mouseOver}
           />
         ))}
-       </Tabs>
-        <Button
-          variant="contained"
-          color="secondary"
-          className={classes.button}
-        >
-          Free Estimate
-        </Button>
-        <Menu
-          id="simple-menu"
-          anchorEl={anchorEl}
-          open={openMenu}
-          onClose={handleClose}
-          MenuListProps={{ onMouseLeave: handleClose }}
-          classes={{ paper: classes.menu }} //{/*menu ke ander jo paper component hai use ka background white se change kar karne ke liye */}
-          elevation={0} //{/* services tab click karne pe thoda displace hona , rokne ke liye */}
-          keepMounted
-
-        >
-          {menuOptions.map((option, i) => (
-            <MenuItem
-              key={option}
-              component={Link}
-              to={option.link}
-              classes={{ root: classes.menuItem }}
-              onClick={(event) => {
-                handleMenuItemClick(event, i);
-                setValue(1);
-                handleClose();
-              }}
-              selected={i === selectedIndex && value === 1}
-            >
-              {option.name}
-            </MenuItem>
-          ))}
-          {/* 
+      </Tabs>
+      <Button variant="contained" color="secondary" className={classes.button}>
+        Free Estimate
+      </Button>
+      <Menu
+        id="simple-menu"
+        anchorEl={anchorEl}
+        open={openMenu}
+        onClose={handleClose}
+        MenuListProps={{ onMouseLeave: handleClose }}
+        classes={{ paper: classes.menu }} //{/*menu ke ander jo paper component hai use ka background white se change kar karne ke liye */}
+        elevation={0} //{/* services tab click karne pe thoda displace hona , rokne ke liye */}
+        style={{zIndex:1302}}
+        keepMounted
+      >
+        {menuOptions.map((option, i) => (
+          <MenuItem
+            key={`${option}${i}`}
+            component={Link}
+            to={option.link}
+            classes={{ root: classes.menuItem }}
+            onClick={(event) => {
+              handleMenuItemClick(event, i);
+              setValue(1);
+              handleClose();
+            }}
+            selected={i === selectedIndex && value === 1}
+          >
+            {option.name}
+          </MenuItem>
+        ))}
+        {/* 
                 or via direct
 
 
@@ -379,8 +381,7 @@ export default function Header(props) {
                 
                 
                 */}
-        </Menu>
-  
+      </Menu>
     </React.Fragment>
   );
   const drawer = (
@@ -393,20 +394,29 @@ export default function Header(props) {
         onOpen={() => setOpenDrawer(true)}
         classes={{ paper: classes.drawer }}
       >
+        {/**   <div className={classes.toolbarMargin}/> not required in our codee for pushing down drawer from appbar*/}
         <List disabalePadding>
-        {routes.map(route=>(
-           
-          <ListItem divider button component={Link} to={route.link} selected={value === route.activeIndex} 
-          key={`${route}${route.activeIndex}`}
-            
-          onClick={()=>{setOpenDrawer(false);setValue(route.activeIndex)}}>
-            <ListItemText className={
-                value === route.activeIndex
-                  ? [classes.drawerItem, classes.drawerItemSeleted]
-                  : classes.drawerItem }>
-                {route.name}  </ListItemText>
-          </ListItem>
-        ))}
+          {routes.map((route) => (
+            <ListItem
+              divider
+              button
+              component={Link}
+              to={route.link}
+              selected={value === route.activeIndex}
+              classes={{selected:classes.drawerItemSeleted}}
+              key={`${route}${route.activeIndex}`}
+              onClick={() => {
+                setOpenDrawer(false);
+                setValue(route.activeIndex);
+              }}
+            >
+              <ListItemText
+                className={classes.drawerItem }
+              >
+                {route.name}{" "}
+              </ListItemText>
+            </ListItem>
+          ))}
           <ListItem
             onClick={() => {
               setOpenDrawer(false);
@@ -415,15 +425,13 @@ export default function Header(props) {
             divider
             button
             component={Link}
-            className={classes.drawerItemEstimate}
+            className={{root:classes.drawerItemEstimate,selected:classes.drawerItemSeleted}}
             to="/estimate"
             selected={value === 5}
           >
             <ListItemText
               className={
-                value === 4
-                  ? [classes.drawerItem, classes.drawerItemSeleted]
-                  : classes.drawerItem
+                 classes.drawerItem
               }
               disableTypography
             >
@@ -444,7 +452,7 @@ export default function Header(props) {
   return (
     <React.Fragment>
       <ElevationScroll>
-        <AppBar position="fixed">
+        <AppBar position="fixed" className={classes.appbar}>
           <Toolbar disableGutters={true} className={classes.logo}>
             <Button
               disableRipple
