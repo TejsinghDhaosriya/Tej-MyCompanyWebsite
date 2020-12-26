@@ -48,7 +48,7 @@ const useStyles = makeStyles((theme) => ({
   socialContainer:{
       position :"absolute",
       marginTop:"-6em",
-      right:"1.5em",
+      right:"1.5em",//right screen se kitna dur
 
       [theme.breakpoints.down("xs")]:{
       right:"0.6em" //right screen se kitna
