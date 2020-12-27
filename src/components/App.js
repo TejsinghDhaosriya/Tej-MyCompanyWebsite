@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Button from "@material-ui/core/Button";
 import Header from "./ui/Header";
 import Footer from "./ui/Footer";
+import LandingPage from './LandingPage';
 import theme from "./ui/Theme";
 
 function App() {
@@ -22,7 +23,7 @@ function App() {
           <Route
             exact
             path="/"
-            component={() => <div style={{ height: "2000px" }}>Home</div>}
+            component={LandingPage}
           />
           <Route exact path="/services" component={() => <div>Services</div>} />
           <Route

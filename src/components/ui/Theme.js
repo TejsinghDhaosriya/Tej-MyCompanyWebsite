@@ -29,6 +29,13 @@ export default  createMuiTheme({
     fontSize:"1rem",
     textTransform:"none", //auto style band kare
     color:"white"
+    },
+    h2:{
+        fontFamily:"Raleway",
+        fontWeight:700,
+        fontSize:"2.5rem",
+        color:`${tejBlue}`,
+        lineHeight:"1.5" //kitne gap
     }
     }
 }); 

@@ -51,7 +51,7 @@ const useStyles = makeStyles((theme) => ({
       right:"1.5em",
 
       [theme.breakpoints.down("xs")]:{
-      right:"0.6em" //right screen se kitna
+      right:"0.6em" //right screen se kitna dur
     }}
 
 }));
