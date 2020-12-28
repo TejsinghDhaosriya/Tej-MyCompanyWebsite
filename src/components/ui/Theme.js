@@ -41,7 +41,7 @@ export default  createMuiTheme({
     h3:{
         fontFamily:"Pacifico",
         fontSize:"2.5rem",
-        color:  `${tejBlue}`
+        color: tejBlue
     },
     subtitle1:{
      fontSize:"1.25rem",
